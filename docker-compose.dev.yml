@@ -32,7 +32,6 @@ services:
       DBINIT: ${DBINIT:-false}
       MONGO: ${MONGO:-mongodb://mongo:27017}
       DB: ${DB:-stock}
-      K: ${K:-f3fa39nui89Wi707}
       UC: ${UC:-http://user-center}
     volumes:
       - ~/.ssh:/root/.ssh

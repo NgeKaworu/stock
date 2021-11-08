@@ -23,7 +23,6 @@ services:
       DBINIT: ${DBINIT:-false}
       MONGO: ${MONGO:?mongo url is required}
       DB: ${DB:-stock}
-      K: ${K:?iv key is required}
       UC: ${UC:-http://user-center}
     networks:
       - backend
