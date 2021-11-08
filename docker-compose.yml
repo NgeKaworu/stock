@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  stock-umi:
+    restart: "always"
+    build:
+      context: ./stock-umi
+      dockerfile: docker/Dockerfile
+    image: ngekaworu/stock-umi
+    container_name: stock-umi
+    networks:
+      - frontend
+
+  stock-go:
+    restart: "always"
+    build:
+      context: ./stock-go
+      dockerfile: docker/Dockerfile
+    image: ngekaworu/stock-go
+    container_name: stock-go
+    environment:
+      ADDR: ${ADDR:-:80}
+      DBINIT: ${DBINIT:-false}
+      MONGO: ${MONGO:?mongo url is required}
+      DB: ${DB:-stock}
+      K: ${K:?iv key is required}
+      UC: ${UC:-http://user-center}
+    networks:
+      - backend
+    depends_on:
+      - mongo
+
+networks:
+  backend:
+    name: backend
+    driver: bridge
+  frontend:
+    name: frontend
+    driver: bridge

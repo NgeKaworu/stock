@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  stock-umi-dev:
+    build:
+      context: stock-umi
+      dockerfile: docker/Dockerfile.dev
+    image: stock-umi:dev
+    container_name: stock-umi-dev
+    stdin_open: true
+    tty: true
+    environment:
+      BRANCH: ${BRANCH:-master}
+    networks:
+      - backend
+    ports:
+      - 8001:80
+    volumes:
+      - ~/.ssh:/root/.ssh
+
+  stock-go-dev:
+    build:
+      context: stock-go
+      dockerfile: docker/Dockerfile.dev
+    image: stock-go:dev
+    container_name: stock-go-dev
+    stdin_open: true
+    tty: true
+    environment:
+      BRANCH: ${BRANCH:-master}
+      ADDR: ${ADDR:-:80}
+      DBINIT: ${DBINIT:-false}
+      MONGO: ${MONGO:-mongodb://mongo:27017}
+      DB: ${DB:-stock}
+      K: ${K:-f3fa39nui89Wi707}
+      UC: ${UC:-http://user-center}
+    volumes:
+      - ~/.ssh:/root/.ssh
+    networks:
+      - backend
+    depends_on:
+      - mongo
+
+networks:
+  backend:
+    name: backend
+    driver: bridge
