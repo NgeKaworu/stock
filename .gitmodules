@@ -1,6 +1,6 @@
 [submodule "stock-umi"]
 	path = stock-umi
-	url = git@github.com:NgeKaworu/stock-umi.git
+	url = git@github.com:yingxv/stock-umi.git
 [submodule "stock-go"]
 	path = stock-go
-	url = git@github.com:NgeKaworu/stock-go.git
+	url = git@github.com:yingxv/stock-go.git
