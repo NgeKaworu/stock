@@ -10,7 +10,7 @@ services:
     stdin_open: true
     tty: true
     environment:
-      BRANCH: ${BRANCH:-master}
+      BRANCH: ${BRANCH:-dev}
     networks:
       - backend
     ports:
@@ -27,7 +27,7 @@ services:
     stdin_open: true
     tty: true
     environment:
-      BRANCH: ${BRANCH:-master}
+      BRANCH: ${BRANCH:-dev}
       ADDR: ${ADDR:-:80}
       DBINIT: ${DBINIT:-false}
       MONGO: ${MONGO:-mongodb://mongo:27017}
