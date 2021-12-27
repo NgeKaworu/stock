@@ -24,10 +24,12 @@ services:
       MONGO: ${MONGO:?mongo url is required}
       DB: ${DB:-stock}
       UC: ${UC:-http://user-center}
+      REDIS: ${REDIS:?redis url is required}
     networks:
       - backend
     depends_on:
       - mongo
+      - redis
 
 networks:
   backend:

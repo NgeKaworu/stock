@@ -33,12 +33,14 @@ services:
       MONGO: ${MONGO:-mongodb://mongo:27017}
       DB: ${DB:-stock}
       UC: ${UC:-http://user-center}
+      REDIS: ${REDIS:?redis url is required}
     volumes:
       - ~/.ssh:/root/.ssh
     networks:
       - backend
     depends_on:
       - mongo
+      - redis
 
 networks:
   backend:
